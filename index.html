@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>سامانه جامع سلامت قم</title>
+
+<style>
+
+/* =========================
+   تنظیمات اصلی
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+:root{
+    --red:#d4001b;
+    --red-light:#ff2440;
+    --black:#08090b;
+    --dark:#111317;
+    --dark2:#181b20;
+    --border:#2b3038;
+    --text:#f5f5f5;
+    --muted:#aeb4bd;
+}
+
+body{
+    margin:0;
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            #3b1018 0%,
+            #08090b 35%
+        );
+
+    background-color:var(--black);
+    color:var(--text);
+}
+
+/* =========================
+   هدر
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:rgba(8,9,11,.94);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:
+        2px solid var(--red);
+
+    box-shadow:
+        0 5px 30px #000;
+}
+
+.header-content{
+    max-width:1250px;
+    margin:auto;
+
+    padding:18px;
+
+    display:flex;
+    align-items:center;
+
+    gap:18px;
+}
+
+/* لوگو */
+
+.logo{
+    width:75px;
+    height:75px;
+
+    background:white;
+
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 0 30px #d4001b55;
+
+    flex-shrink:0;
+}
+
+/* هلال */
+
+.crescent{
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:var(--red);
+
+    position:relative;
+}
+
+.crescent::after{
+    content:"";
+
+    position:absolute;
+
+    width:43px;
+    height:43px;
+
+    border-radius:50%;
+
+    background:white;
+
+    top:-5px;
+    left:10px;
+}
+
+/* متن هدر */
+
+.header-text h1{
+    margin:0;
+
+    font-size:28px;
+
+    color:white;
+}
+
+.header-text p{
+    margin:
+        7px 0 0;
+
+    color:var(--muted);
+}
+
+/* =========================
+   بدنه
+========================= */
+
+.container{
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:
+        25px 18px;
+}
+
+/* =========================
+   بخش معرفی
+========================= */
+
+.hero{
+    display:grid;
+
+    grid-template-columns:
+        1.4fr .6fr;
+
+    gap:18px;
+
+    margin-bottom:22px;
+}
+
+.hero-box,
+.stats{
+    background:
+        linear-gradient(
+            145deg,
+            #181b20,
+            #0d0f12
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-shadow:
+        0 15px 45px #0008;
+}
+
+.hero-box h2{
+    margin-top:0;
+
+    font-size:25px;
+}
+
+.hero-box p{
+    color:#c5c9ce;
+
+    line-height:2;
+}
+
+/* آمار */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+}
+
+.stat{
+    background:#0a0c0f;
+
+    border:
+        1px solid #292e35;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    text-align:center;
+}
+
+.stat b{
+    display:block;
+
+    font-size:27px;
+
+    color:white;
+}
+
+.stat span{
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+/* =========================
+   جستجو
+========================= */
+
+.search-area{
+    background:
+        linear-gradient(
+            145deg,
+            #17191d,
+            #0e1013
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:18px;
+
+    margin-bottom:20px;
+}
+
+#search{
+    width:100%;
+
+    padding:15px 18px;
+
+    border-radius:13px;
+
+    border:
+        1px solid #3a3e45;
+
+    background:#090b0e;
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+#search:focus{
+    border-color:var(--red);
+
+    box-shadow:
+        0 0 15px #d4001b44;
+}
+
+/* =========================
+   دکمه‌های دسته‌بندی
+========================= */
+
+.categories{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+    margin-top:14px;
+}
+
+.categories button{
+    border:
+        1px solid #393e45;
+
+    background:#20242a;
+
+    color:#eee;
+
+    padding:
+        11px 16px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    transition:.2s;
+}
+
+.categories button:hover,
+.categories button.active{
+    background:var(--red);
+
+    border-color:var(--red);
+
+    box-shadow:
+        0 5px 20px #d4001b33;
+}
+
+/* =========================
+   تعداد
+========================= */
+
+.count{
+    color:var(--muted);
+
+    margin:
+        12px 2px;
+}
+
+/* =========================
+   کارت‌ها
+========================= */
+
+#cards{
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(290px,1fr)
+        );
+
+    gap:18px;
+}
+
+.card{
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171a1f,
+            #0e1013
+        );
+
+    border:
+        1px solid #292d34;
+
+    border-right:
+        5px solid var(--red);
+
+    border-radius:19px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:
+        0 10px 30px #0008;
+}
+
+.card:hover{
+    transform:
+        translateY(-6px);
+
+    border-color:
+        var(--red);
+
+    box-shadow:
+        0 15px 40px #d4001b30;
+}
+
+/* عکس کارت */
+
+.card-image{
+    width:100%;
+
+    height:160px;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* بدنه کارت */
+
+.card-body{
+    padding:18px;
+}
+
+.type{
+    display:inline-block;
+
+    background:var(--red);
+
+    color:white;
+
+    padding:
+        6px 10px;
+
+    border-radius:8px;
+
+    font-size:12px;
+}
+
+.card h2{
+    font-size:18px;
+
+    margin:
+        12px 0;
+}
+
+.card p{
+    color:#b9bec6;
+
+    font-size:13px;
+
+    line-height:1.8;
+
+    margin:6px 0;
+}
+
+/* =========================
+   پنجره جزئیات
+========================= */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:#000d;
+
+    z-index:1000;
+
+    overflow:auto;
+
+    padding:
+        25px 14px;
+}
+
+.modal-box{
+    max-width:780px;
+
+    margin:auto;
+
+    background:#13161a;
+
+    border:
+        1px solid #343941;
+
+    border-top:
+        5px solid var(--red);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-shadow:
+        0 20px 80px #000;
+
+    position:relative;
+}
+
+.close{
+    position:absolute;
+
+    left:20px;
+    top:8px;
+
+    font-size:35px;
+
+    color:#aaa;
+
+    cursor:pointer;
+}
+
+.close:hover{
+    color:var(--red);
+}
+
+/* هدر جزئیات */
+
+.modal-header{
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding-left:35px;
+}
+
+.modal-header img{
+    width:125px;
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+}
+
+.modal-header h2{
+    margin:
+        0 0 10px;
+}
+
+/* اطلاعات */
+
+.info{
+    background:#0b0d10;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    margin-top:18px;
+}
+
+.info div{
+    padding:
+        11px 4px;
+
+    border-bottom:
+        1px solid #252930;
+
+    line-height:1.9;
+}
+
+.info div:last-child{
+    border-bottom:0;
+}
+
+.info strong{
+    color:#ef1932;
+}
+
+.description{
+    color:#d5d8dc;
+
+    line-height:2;
+}
+
+/* =========================
+   دکمه‌ها
+========================= */
+
+.buttons{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+
+    margin-top:15px;
+}
+
+.button{
+    display:block;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    padding:14px;
+
+    border-radius:11px;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.map-button{
+    background:var(--red);
+
+    color:white;
+}
+
+.map-button:hover{
+    background:var(--red-light);
+}
+
+.phone-button{
+    background:#252930;
+
+    color:white;
+
+    border:
+        1px solid #3c4149;
+}
+
+.phone-button:hover{
+    background:#333840;
+}
+
+/* =========================
+   فوتر
+========================= */
+
+footer{
+    max-width:1250px;
+
+    margin:
+        35px auto 0;
+
+    padding:
+        20px;
+
+    color:#777;
+
+    text-align:center;
+
+    border-top:
+        1px solid #252930;
+
+    line-height:2;
+
+    font-size:12px;
+}
+
+/* =========================
+   موبایل
+========================= */
+
+@media(max-width:700px){
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .header-content{
+        align-items:flex-start;
+    }
+
+    .header-text h1{
+        font-size:21px;
+    }
+
+    .logo{
+        width:60px;
+        height:60px;
+    }
+
+    #cards{
+        grid-template-columns:1fr;
+    }
+
+    .buttons{
+        grid-template-columns:1fr;
+    }
+
+    .modal-header img{
+        width:100px;
+        height:75px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     هدر
+========================= -->
+
+<header>
+
+<div class="header-content">
+
+<div class="logo">
+
+<div class="crescent"></div>
+
+</div>
+
+<div class="header-text">
+
+<h1>
+سامانه جامع سلامت قم
+</h1>
+
+<p>
+بیمارستان‌ها • درمانگاه‌ها • داروخانه‌ها • پزشکان متخصص
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+     محتوای اصلی
+========================= -->
+
+<main class="container">
+
+
+<!-- معرفی -->
+
+<section class="hero">
+
+<div class="hero-box">
+
+<h2>
+راهنمای سلامت شهر قم
+</h2>
+
+<p>
+در این سامانه می‌توانی مراکز درمانی،
+داروخانه‌ها و پزشکان را جستجو کنی،
+اطلاعات آن‌ها را ببینی و موقعیت مرکز را
+در Google Maps باز کنی.
+</p>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<b id="allCount">
+0
+</b>
+
+<span>
+مجموع اطلاعات
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="doctorCount">
+0
+</b>
+
+<span>
+پزشکان
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="centerCount">
+0
+</b>
+
+<span>
+مراکز
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b>
+قم
+</b>
+
+<span>
+شهر تحت پوشش
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     جستجو
+========================= -->
+
+<section class="search-area">
+
+<input
+id="search"
+type="text"
+placeholder="🔎 نام پزشک، تخصص، بیمارستان، داروخانه یا آدرس..."
+oninput="render()"
+>
+
+
+<div class="categories">
+
+<button
+class="active"
+onclick="setType('همه',this)"
+>
+همه
+</button>
+
+<button
+onclick="setType('بیمارستان',this)"
+>
+🏥 بیمارستان
+</button>
+
+<button
+onclick="setType('درمانگاه',this)"
+>
+🩺 درمانگاه
+</button>
+
+<button
+onclick="setType('داروخانه',this)"
+>
+💊 داروخانه
+</button>
+
+<button
+onclick="setType('پزشک',this)"
+>
+👨‍⚕️ پزشکان متخصص
+</button>
+
+</div>
+
+</section>
+
+
+<div
+class="count"
+id="count"
+>
+</div>
+
+
+<div id="cards"></div>
+
+
+</main>
+
+
+<!-- =========================
+     پنجره جزئیات
+========================= -->
+
+<div
+class="modal"
+id="modal"
+>
+
+<div class="modal-box">
+
+<span
+class="close"
+onclick="closeModal()"
+>
+×
+</span>
+
+
+<div class="modal-header">
+
+<img
+id="modalImage"
+src=""
+alt=""
+>
+
+<div>
+
+<h2
+id="modalName"
+>
+</h2>
+
+<span
+class="type"
+id="modalType"
+>
+</span>
+
+</div>
+
+</div>
+
+
+<div class="info">
+
+<div>
+
+<strong>
+📞 تلفن:
+</strong>
+
+<span id="modalPhone">
+</span>
+
+</div>
+
+
+<div>
+
+<strong>
+📍 آدرس:
+</strong>
+
+<span id="modalAddress">
+</span>
+
+</div>
+
+
+<div>
+
+<strong>
+🏷️ تخصص / دسته:
+</strong>
+
+<span id="modalSpecialty">
+</span>
+
+</div>
+
+
+<div>
+
+<strong>
+📅 سال تأسیس / شروع فعالیت:
+</strong>
+
+<span id="modalYear">
+</span>
+
+</div>
+
+
+<div>
+
+<strong>
+🛏️ ظرفیت:
+</strong>
+
+<span id="modalBeds">
+</span>
+
+</div>
+
+
+<div class="description">
+
+<strong>
+📝 توضیحات:
+</strong>
+
+<br>
+
+<span id="modalDescription">
+</span>
+
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<a
+id="phoneButton"
+class="button phone-button"
+href="#"
+>
+📞 تماس
+</a>
+
+
+<a
+id="mapButton"
+class="button map-button"
+target="_blank"
+rel="noopener"
+>
+📍 مشاهده در Google Maps
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+سامانه جامع سلامت قم
+
+<br>
+
+اطلاعات مراکز و پزشکان ممکن است تغییر کند؛
+قبل از مراجعه اطلاعات تماس را بررسی کنید.
+
+</footer>
+
+
+<script>
+
+/* ==========================================================
+   تصاویر
+========================================================== */
+
+/*
+  برای اینکه برنامه بدون عکس‌های زیاد و سنگین کار کند،
+  تصاویر نمونه از اینترنت گرفته می‌شوند.
+*/
+
+const IMG_HOSPITAL =
+"https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1000&q=80";
+
+const IMG_DOCTOR =
+"https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1000&q=80";
+
+const IMG_PHARMACY =
+"https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=1000&q=80";
+
+
+/* ==========================================================
+   اطلاعات
+========================================================== */
+
+const data = [
+
+/* ================= بیمارستان‌ها ================= */
+
+{
+name:"بیمارستان امام رضا (ع)",
+type:"بیمارستان",
+
+phone:"025-38700840",
+
+address:"قم، جاده اراک",
+
+year:"نامشخص",
+
+beds:"اطلاعات وارد نشده",
+
+specialty:"بیمارستان",
+
+image:IMG_HOSPITAL,
+
+description:
+"مرکز بیمارستانی در شهر قم."
+},
+
+
+{
+name:"بیمارستان شهید بهشتی قم",
+type:"بیمارستان",
+
+phone:"025-36122000",
+
+address:"قم، بلوار شهید بهشتی",
+
+year:"نامشخص",
+
+beds:"اطلاعات وارد نشده",
+
+specialty:"بیمارستان",
+
+image:IMG_HOSPITAL,
+
+description:
+"یکی از مراکز بیمارستانی شهر قم."
+},
+
+
+{
+name:"بیمارستان نکویی هدایتی فرقانی",
+type:"بیمارستان",
+
+phone:"025-37211061",
+
+address:"قم، خیابان طالقانی",
+
+year:"نامشخص",
+
+beds:"اطلاعات وارد نشده",
+
+specialty:"بیمارستان",
+
+image:IMG_HOSPITAL,
+
+description:
+"بیمارستان نکویی هدایتی فرقانی قم."
+},
+
+
+{
+name:"بیمارستان ولیعصر (عج)",
+type:"بیمارستان",
+
+phone:"025-32884310",
+
+address:"قم، بلوار امین",
+
+year:"نامشخص",
+
+beds:"اطلاعات وارد نشده",
+
+specialty:"بیمارستان",
+
+image:IMG_HOSPITAL,
+
+description:
+"بیمارستان ولیعصر قم."
+},
+
+
+/* ================= درمانگاه‌ها ================= */
+
+{
+name:"درمانگاه حضرت بقیه‌الله الاعظم (عج)",
+type:"درمانگاه",
+
+phone:"025-37102222",
+
+address:"قم",
+
+year:"نامشخص",
+
+beds:"ندارد",
+
+specialty:"درمانگاه",
+
+image:IMG_HOSPITAL,
+
+description:
+"مرکز درمانی در شهر قم."
+},
+
+
+{
+name:"درمانگاه شبانه‌روزی دکتر سعیدی",
+type:"درمانگاه",
+
+phone:"025-37728915",
+
+address:"قم",
+
+year:"نامشخص",
+
+beds:"ندارد",
+
+specialty:"درمانگاه شبانه‌روزی",
+
+image:IMG_HOSPITAL,
+
+description:
+"درمانگاه شبانه‌روزی."
+},
+
+
+/* ================= داروخانه‌ها ================= */
+
+{
+name:"داروخانه شبانه‌روزی دکتر یزدیان",
+type:"داروخانه",
+
+phone:"025-36664011",
+
+address:"قم، میدان زین‌الدین، خیابان امام خمینی",
+
+year:"نامشخص",
+
+beds:"ندارد",
+
+specialty:"داروخانه شبانه‌روزی",
+
+image:IMG_PHARMACY,
+
+description:
+"داروخانه شبانه‌روزی دکتر یزدیان."
+},
+
+
+{
+name:"داروخانه شبانه‌روزی حضرت معصومه (س)",
+type:"داروخانه",
+
+phone:"025-37175285",
+
+address:"قم",
+
+year:"نامشخص",
+
+beds:"ندارد",
+
+specialty:"داروخانه شبانه‌روزی",
+
+image:IMG_PHARMACY,
+
+description:
+"داروخانه شبانه‌روزی حضرت معصومه (س)."
+},
+
+
+/* ================= پزشکان ================= */
+
+{
+name:"دکتر منصوره صادقی افخم",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص زنان و زایمان",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص زنان و زایمان."
+},
+
+
+{
+name:"دکتر ترکیه رضا",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص چشم",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص چشم."
+},
+
+
+{
+name:"دکتر شهاب جعفری",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص بیهوشی",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص بیهوشی."
+},
+
+
+{
+name:"دکتر فائزه یحیایی",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص طب اورژانس",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص طب اورژانس."
+},
+
+
+{
+name:"دکتر سیده سحر صالح",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص جراحی عمومی",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص جراحی عمومی."
+},
+
+
+{
+name:"دکتر احسان کریمی بهنق",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص رادیولوژی",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص رادیولوژی."
+},
+
+
+{
+name:"دکتر مهدی پزشکی مدرس",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص بیماری‌های داخلی",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص بیماری‌های داخلی."
+},
+
+
+{
+name:"دکتر مریم سیمایی",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص قلب و عروق",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص قلب و عروق."
+},
+
+
+{
+name:"دکتر مریم شابرم",
+type:"پزشک",
+
+phone:"اطلاعات عمومی وارد نشده",
+
+address:"قم",
+
+year:"—",
+
+beds:"—",
+
+specialty:"متخصص پوست",
+
+image:IMG_DOCTOR,
+
+description:
+"پزشک متخصص پوست و مو."
+}
+
+];
+
+
+/* ==========================================================
+   متغیر فیلتر
+========================================================== */
+
+let currentType="همه";
+
+
+/* ==========================================================
+   انتخاب دسته
+========================================================== */
+
+function setType(type,button){
+
+    currentType=type;
+
+    document
+    .querySelectorAll(".categories button")
+    .forEach(
+        b=>b.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    render();
+}
+
+
+/* ==========================================================
+   نمایش کارت‌ها
+========================================================== */
+
+function render(){
+
+    const searchText =
+        document
+        .getElementById("search")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    let list =
+        data.filter(item=>{
+
+            if(currentType==="همه")
+                return true;
+
+            return item.type===currentType;
+
+        });
+
+
+    if(searchText){
+
+        list =
+            list.filter(item=>{
+
+                const text =
+                    (
+                        item.name+
+                        " "+
+                        item.type+
+                        " "+
+                        item.address+
+                        " "+
+                        item.specialty
+                    )
+                    .toLowerCase();
+
+                return text.includes(searchText);
+
+            });
+
+    }
+
+
+    document
+    .getElementById("count")
+    .innerText =
+        list.length+
+        " مورد پیدا شد";
+
+
+    const cards =
+        document.getElementById("cards");
+
+
+    if(list.length===0){
+
+        cards.innerHTML=`
+
+        <div class="hero-box">
+
+            <h2>
+                موردی پیدا نشد
+            </h2>
+
+            <p>
+                نام، تخصص یا دسته دیگری را امتحان کن.
+            </p>
+
+        </div>
+
+        `;
+
+        updateStats();
+
+        return;
+    }
+
+
+    cards.innerHTML="";
+
+
+    list.forEach(item=>{
+
+        const index =
+            data.indexOf(item);
+
+
+        const card =
+            document.createElement("article");
+
+
+        card.className="card";
+
+
+        card.innerHTML=`
+
+        <img
+            class="card-image"
+            src="${item.image}"
+            alt="${item.name}"
+            loading="lazy"
+        >
+
+        <div class="card-body">
+
+            <span class="type">
+                ${item.type}
+            </span>
+
+            <h2>
+                ${item.name}
+            </h2>
+
+            <p>
+                📍 ${item.address}
+            </p>
+
+            <p>
+                🏷️ ${item.specialty}
+            </p>
+
+            ${
+                item.phone.includes("025-")
+                ?
+                `<p>📞 ${item.phone}</p>`
+                :
+                ""
+            }
+
+        </div>
+
+        `;
+
+
+        card.onclick=()=>{
+            openModal(index);
+        };
+
+
+        cards.appendChild(card);
+
+    });
+
+
+    updateStats();
+}
+
+
+/* ==========================================================
+   آمار
+========================================================== */
+
+function updateStats(){
+
+    document
+    .getElementById("allCount")
+    .innerText =
+        data.length;
+
+
+    document
+    .getElementById("doctorCount")
+    .innerText =
+        data.filter(
+            x=>x.type==="پزشک"
+        ).length;
+
+
+    document
+    .getElementById("centerCount")
+    .innerText =
+        data.filter(
+            x=>x.type!=="پزشک"
+        ).length;
+
+}
+
+
+/* ==========================================================
+   باز کردن جزئیات
+========================================================== */
+
+function openModal(index){
+
+    const item =
+        data[index];
+
+
+    document
+    .getElementById("modal")
+    .style.display="block";
+
+
+    document
+    .getElementById("modalImage")
+    .src=item.image;
+
+
+    document
+    .getElementById("modalImage")
+    .alt=item.name;
+
+
+    document
+    .getElementById("modalName")
+    .innerText=item.name;
+
+
+    document
+    .getElementById("modalType")
+    .innerText=item.type;
+
+
+    document
+    .getElementById("modalPhone")
+    .innerText=item.phone;
+
+
+    document
+    .getElementById("modalAddress")
+    .innerText=item.address;
+
+
+    document
+    .getElementById("modalSpecialty")
+    .innerText=item.specialty;
+
+
+    document
+    .getElementById("modalYear")
+    .innerText=item.year;
+
+
+    document
+    .getElementById("modalBeds")
+    .innerText=item.beds;
+
+
+    document
+    .getElementById("modalDescription")
+    .innerText=item.description;
+
+
+    /* Google Maps */
+
+    const query =
+        encodeURIComponent(
+            item.name+
+            " "+
+            item.address+
+            " قم"
+        );
+
+
+    document
+    .getElementById("mapButton")
+    .href=
+        "https://www.google.com/maps/search/?api=1&query="+
+        query;
+
+
+    /* تماس */
+
+    const phoneButton =
+        document
+        .getElementById("phoneButton");
+
+
+    if(item.phone.includes("025-")){
+
+        phoneButton.href=
+            "tel:"+
+            item.phone
+            .replace(
+                /[^0-9+]/g,
+                ""
+            );
+
+        phoneButton.style.display="block";
+
+    }else{
+
+        phoneButton.style.display="none";
+
+    }
+
+}
+
+
+/* ==========================================================
+   بستن پنجره
+========================================================== */
+
+function closeModal(){
+
+    document
+    .getElementById("modal")
+    .style.display="none";
+
+}
+
+
+/* ==========================================================
+   بستن با کلیک بیرون
+========================================================== */
+
+window.onclick=function(event){
+
+    const modal =
+        document
+        .getElementById("modal");
+
+
+    if(event.target===modal){
+
+        closeModal();
+
+    }
+
+};
+
+
+/* ==========================================================
+   بستن با ESC
+========================================================== */
+
+window.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key==="Escape"){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* ==========================================================
+   شروع برنامه
+========================================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
+
+<footer>
+
+
+<br><br>
+
+<strong style="color:#d4001b;">
+سازنده: محمد کیان سلیمی
+</strong>
+
+</footer>
