@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>جدول مندلیف سه‌بعدی</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html,body{min-height:100%}body{background:radial-gradient(circle at 50% 25%,#062b59,#03152c 28%,#010812 62%,#000);color:#fff;font-family:Tahoma,Arial,sans-serif;overflow-x:hidden}
+#intro{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#063b78,#031a36 25%,#010812 60%,#000);transition:opacity .8s,visibility .8s}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}.intro-glow{position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,255,.95),rgba(0,100,255,.4),transparent 70%);filter:blur(8px);animation:g 1.8s ease-in-out 2 alternate}
+.intro-core{position:absolute;width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#fff 0%,#6eeaff 20%,#008cff 45%,#003cff 70%,transparent 75%);box-shadow:0 0 20px #fff,0 0 50px #00baff,0 0 100px #0077ff;animation:c 2s ease-in-out 1}.intro-core span{font-size:42px}.intro-title{position:absolute;top:62%;text-align:center;opacity:0;animation:t .8s ease forwards .7s}.intro-title h1{color:#8deaff;font-size:28px;letter-spacing:5px;text-shadow:0 0 10px #00baff,0 0 30px #0077ff}.intro-title p{margin-top:10px;color:#b8eaff;font-size:15px}
+@keyframes g{from{transform:scale(.5);opacity:.35}to{transform:scale(1.8);opacity:1}}@keyframes c{0%{transform:scale(.2);opacity:0}30%{transform:scale(1);opacity:1}70%{transform:scale(1.2)}100%{transform:scale(1)}}@keyframes t{to{opacity:1;transform:translateY(0)}from{opacity:0;transform:translateY(20px)}}
+#main{opacity:0;transform:scale(.75) translateY(30px);transition:1.2s;padding:22px 15px 50px}#main.show{opacity:1;transform:scale(1)}header{text-align:center;margin-bottom:12px}header h1{font-size:34px;color:#00baff;text-shadow:0 0 10px #00aaff,0 0 30px #0066ff}header p{margin-top:7px;color:#8ddfff;font-size:14px}
+.table-wrapper{width:100%;overflow:auto;padding:18px 10px 30px;perspective:1800px}.periodic-table{min-width:1100px;display:grid;grid-template-columns:repeat(18,58px);grid-auto-rows:67px;gap:6px;justify-content:center;transform-style:preserve-3d}
+.element{position:relative;border-radius:10px;border:1px solid #008cff;background:linear-gradient(145deg,rgba(0,110,220,.34),rgba(0,12,30,.96));box-shadow:inset 0 0 12px rgba(0,150,255,.15),0 4px 9px #000,0 0 7px rgba(0,130,255,.2);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transform-style:preserve-3d;transition:.22s;animation:a .7s backwards}
+.element:hover{transform:translateZ(45px) translateY(-8px) rotateX(7deg) rotateY(-7deg) scale(1.08);background:linear-gradient(145deg,#008cff,#001b3d);box-shadow:0 0 15px #00baff,0 0 35px #0077ff,0 20px 35px #000;z-index:100}@keyframes a{from{opacity:0;transform:translateZ(-250px) rotateY(90deg) scale(.2)}to{opacity:1;transform:translateZ(0) rotateY(0) scale(1)}}
+.atomic{position:absolute;top:4px;left:5px;font-size:8px;color:#67dfff}.symbol{font-size:20px;font-weight:bold;text-shadow:0 0 7px #00aaff}.name{margin-top:3px;font-size:7px;color:#a6eaff;white-space:nowrap}
+#infoPanel{position:fixed;left:50%;top:50%;width:400px;max-width:90vw;padding:28px;transform:translate(-50%,-50%) scale(.5);opacity:0;pointer-events:none;z-index:500;border-radius:22px;border:1px solid #00aaff;background:linear-gradient(145deg,rgba(0,38,80,.98),rgba(0,5,15,.99));box-shadow:0 0 25px #0077ff,0 0 70px rgba(0,100,255,.5);transition:.4s}#infoPanel.active{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}.close{position:absolute;top:10px;left:12px;width:32px;height:32px;border-radius:50%;border:1px solid #00aaff;background:#00152b;color:#fff;cursor:pointer;font-size:19px}.bigSymbol{text-align:center;font-size:65px;color:#00baff;text-shadow:0 0 10px #00aaff,0 0 35px #0066ff}#infoName{text-align:center;font-size:23px;margin-bottom:18px}.infoLine{margin:9px 0;padding:10px;border-radius:9px;background:rgba(0,100,180,.12);border-right:3px solid #008cff;line-height:1.6}
+@media(max-width:800px){header h1{font-size:27px}.periodic-table{grid-template-columns:repeat(18,48px);grid-auto-rows:57px;gap:5px}.symbol{font-size:17px}.name{font-size:6px}.atomic{font-size:7px}}
+::-webkit-scrollbar{height:9px;width:8px}::-webkit-scrollbar-track{background:#020914}::-webkit-scrollbar-thumb{background:linear-gradient(#008cff,#0044aa);border-radius:20px}
+</style></head><body>
+<div id="intro"><div class="intro-glow"></div><div class="intro-core"><span>⚛</span></div><div class="intro-title"><h1>PERIODIC TABLE</h1><p>جدول مندلیف سه‌بعدی</p></div></div>
+<div id="main"><header><h1>⚛ جدول مندلیف سه‌بعدی</h1><p>موس را روی عناصر حرکت بده و برای مشاهده اطلاعات کلیک کن</p></header><div class="table-wrapper"><div class="periodic-table" id="table"></div></div></div>
+<div id="infoPanel"><button class="close" onclick="closeInfo()">×</button><div class="bigSymbol" id="infoSymbol">H</div><div id="infoName">هیدروژن</div><div class="infoLine">عدد اتمی: <b id="infoNumber"></b></div><div class="infoLine">جرم اتمی: <b id="infoMass"></b></div><div class="infoLine">دسته: <b id="infoCategory"></b></div><div class="infoLine"><b>کاربرد:</b><div id="infoUse"></div></div></div>
+<script>
+const raw=`H|هیدروژن|1|1.008|نافلز|سوخت و تولید آمونیاک
+He|هلیم|2|4.0026|گاز نجیب|بالن و سرمایش
+Li|لیتیم|3|6.94|فلز قلیایی|باتری
+Be|بریلیم|4|9.0122|فلز قلیایی خاکی|هوافضا
+B|بور|5|10.81|شبه‌فلز|شیشه و نیمه‌رسانا
+C|کربن|6|12.011|نافلز|فولاد و گرافیت
+N|نیتروژن|7|14.007|نافلز|کود شیمیایی
+O|اکسیژن|8|15.999|نافلز|پزشکی و جوشکاری
+F|فلوئور|9|18.998|هالوژن|ترکیبات شیمیایی
+Ne|نئون|10|20.180|گاز نجیب|تابلوهای نورانی
+Na|سدیم|11|22.990|فلز قلیایی|صنایع شیمیایی
+Mg|منیزیم|12|24.305|فلز قلیایی خاکی|آلیاژهای سبک
+Al|آلومینیوم|13|26.982|فلز پس‌واسطه|هواپیما و ساختمان
+Si|سیلیسیم|14|28.085|شبه‌فلز|تراشه کامپیوتر
+P|فسفر|15|30.974|نافلز|کود
+S|گوگرد|16|32.06|نافلز|اسید سولفوریک
+Cl|کلر|17|35.45|هالوژن|ضدعفونی آب
+Ar|آرگون|18|39.948|گاز نجیب|جوشکاری
+K|پتاسیم|19|39.098|فلز قلیایی|کود
+Ca|کلسیم|20|40.078|فلز قلیایی خاکی|سیمان و گچ
+Sc|اسکاندیم|21|44.956|فلز واسطه|آلیاژ سبک
+Ti|تیتانیوم|22|47.867|فلز واسطه|هوافضا
+V|وانادیم|23|50.942|فلز واسطه|فولاد
+Cr|کروم|24|51.996|فلز واسطه|فولاد ضدزنگ
+Mn|منگنز|25|54.938|فلز واسطه|فولاد و باتری
+Fe|آهن|26|55.845|فلز واسطه|ساختمان و خودرو
+Co|کبالت|27|58.933|فلز واسطه|باتری
+Ni|نیکل|28|58.693|فلز واسطه|فولاد ضدزنگ
+Cu|مس|29|63.546|فلز واسطه|سیم برق
+Zn|روی|30|65.38|فلز واسطه|گالوانیزه
+Ga|گالیم|31|69.723|فلز پس‌واسطه|نیمه‌رسانا
+Ge|ژرمانیم|32|72.630|شبه‌فلز|فیبر نوری
+As|آرسنیک|33|74.922|شبه‌فلز|نیمه‌رسانا
+Se|سلنیوم|34|78.971|نافلز|الکترونیک
+Br|برم|35|79.904|هالوژن|مواد شیمیایی
+Kr|کریپتون|36|83.798|گاز نجیب|لامپ
+Rb|روبیدیوم|37|85.468|فلز قلیایی|پژوهش
+Sr|استرانسیم|38|87.62|فلز قلیایی خاکی|آتش‌بازی
+Y|ایتریم|39|88.906|فلز واسطه|لیزر
+Zr|زیرکونیوم|40|91.224|فلز واسطه|راکتور
+Nb|نیوبیوم|41|92.906|فلز واسطه|آلیاژ
+Mo|مولیبدن|42|95.95|فلز واسطه|فولاد
+Tc|تکنسیم|43|98|فلز واسطه|تصویربرداری پزشکی
+Ru|روتنیم|44|101.07|فلز واسطه|کاتالیزور
+Rh|رودیوم|45|102.91|فلز واسطه|کاتالیزور خودرو
+Pd|پالادیم|46|106.42|فلز واسطه|کاتالیزور
+Ag|نقره|47|107.87|فلز واسطه|جواهرات و الکترونیک
+Cd|کادمیم|48|112.41|فلز واسطه|باتری
+In|ایندیوم|49|114.82|فلز پس‌واسطه|صفحه لمسی
+Sn|قلع|50|118.71|فلز پس‌واسطه|لحیم
+Sb|آنتیموان|51|121.76|شبه‌فلز|آلیاژ
+Te|تلوریم|52|127.60|شبه‌فلز|نیمه‌رسانا
+I|ید|53|126.90|هالوژن|پزشکی
+Xe|زنون|54|131.29|گاز نجیب|لامپ
+Cs|سزیم|55|132.91|فلز قلیایی|ساعت اتمی
+Ba|باریم|56|137.33|فلز قلیایی خاکی|تصویربرداری
+La|لانتان|57|138.91|لانتانید|لنز
+Ce|سریم|58|140.12|لانتانید|کاتالیزور
+Pr|پرازئودیمیم|59|140.91|لانتانید|آهنربا
+Nd|نئودیمیم|60|144.24|لانتانید|آهنربای قوی
+Pm|پرومتیم|61|145|لانتانید|پژوهش
+Sm|ساماریوم|62|150.36|لانتانید|آهنربا
+Eu|یوروپیم|63|151.96|لانتانید|صفحه نمایش
+Gd|گادولینیم|64|157.25|لانتانید|تصویربرداری
+Tb|تربیوم|65|158.93|لانتانید|الکترونیک
+Dy|دیسپروزیم|66|162.50|لانتانید|آهنربا
+Ho|هولمیم|67|164.93|لانتانید|لیزر
+Er|اربیوم|68|167.26|لانتانید|فیبر نوری
+Tm|تولیوم|69|168.93|لانتانید|لیزر
+Yb|ایتربیوم|70|173.05|لانتانید|پژوهش
+Lu|لوتتیم|71|174.97|لانتانید|پزشکی هسته‌ای
+Hf|هافنیم|72|178.49|فلز واسطه|راکتور
+Ta|تانتال|73|180.95|فلز واسطه|قطعات الکترونیکی
+W|تنگستن|74|183.84|فلز واسطه|ابزار مقاوم
+Re|رنیوم|75|186.21|فلز واسطه|موتور هواپیما
+Os|اسمیم|76|190.23|فلز واسطه|آلیاژ سخت
+Ir|ایریدیوم|77|192.22|فلز واسطه|تجهیزات مقاوم
+Pt|پلاتین|78|195.08|فلز واسطه|کاتالیزور
+Au|طلا|79|196.97|فلز واسطه|جواهرات و الکترونیک
+Hg|جیوه|80|200.59|فلز واسطه|تجهیزات علمی
+Tl|تالیم|81|204.38|فلز پس‌واسطه|کاربرد صنعتی
+Pb|سرب|82|207.2|فلز پس‌واسطه|باتری
+Bi|بیسموت|83|208.98|فلز پس‌واسطه|آلیاژ
+Po|پولونیوم|84|209|فلز پس‌واسطه|پژوهش
+At|آستاتین|85|210|هالوژن|پژوهش پزشکی
+Rn|رادون|86|222|گاز نجیب|پژوهش
+Fr|فرانسیم|87|223|فلز قلیایی|پژوهش
+Ra|رادیم|88|226|فلز قلیایی خاکی|پژوهش
+Ac|اکتینیم|89|227|اکتینید|پژوهش
+Th|توریوم|90|232.04|اکتینید|پژوهش انرژی
+Pa|پروتاکتینیم|91|231.04|اکتینید|پژوهش
+U|اورانیوم|92|238.03|اکتینید|پژوهش انرژی
+Np|نپتونیم|93|237|اکتینید|پژوهش
+Pu|پلوتونیم|94|244|اکتینید|پژوهش
+Am|آمریسیم|95|243|اکتینید|دستگاه تشخیص دود
+Cm|کوریوم|96|247|اکتینید|پژوهش
+Bk|برکلیم|97|247|اکتینید|پژوهش
+Cf|کالیفرنیم|98|251|اکتینید|پژوهش
+Es|اینشتینیم|99|252|اکتینید|پژوهش
+Fm|فرمیم|100|257|اکتینید|پژوهش
+Md|مندلیفیم|101|258|اکتینید|پژوهش
+No|نوبلیم|102|259|اکتینید|پژوهش
+Lr|لارنسیم|103|266|اکتینید|پژوهش
+Rf|رادرفوردیم|104|267|فلز واسطه|پژوهش
+Db|دوبنیوم|105|268|فلز واسطه|پژوهش
+Sg|سیبورگیم|106|269|فلز واسطه|پژوهش
+Bh|بوهریم|107|270|فلز واسطه|پژوهش
+Hs|هاسیوم|108|277|فلز واسطه|پژوهش
+Mt|مایتنریم|109|278|فلز واسطه|پژوهش
+Ds|دارمشتادیم|110|281|فلز واسطه|پژوهش
+Rg|رونتگنیم|111|282|فلز واسطه|پژوهش
+Cn|کوپرنیسیم|112|285|فلز واسطه|پژوهش
+Nh|نیهونیم|113|286|فلز پس‌واسطه|پژوهش
+Fl|فلروویم|114|289|فلز پس‌واسطه|پژوهش
+Mc|مسکوویم|115|290|فلز پس‌واسطه|پژوهش
+Lv|لیورموریم|116|293|فلز پس‌واسطه|پژوهش
+Ts|تنسین|117|294|هالوژن|پژوهش
+Og|اوگانسون|118|294|گاز نجیب|پژوهش`;
+const elements=raw.split('\n').map(x=>x.split('|'));
+const pos={H:[1,1],He:[18,1],Li:[1,2],Be:[2,2],B:[13,2],C:[14,2],N:[15,2],O:[16,2],F:[17,2],Ne:[18,2],Na:[1,3],Mg:[2,3],Al:[13,3],Si:[14,3],P:[15,3],S:[16,3],Cl:[17,3],Ar:[18,3],K:[1,4],Ca:[2,4],Sc:[3,4],Ti:[4,4],V:[5,4],Cr:[6,4],Mn:[7,4],Fe:[8,4],Co:[9,4],Ni:[10,4],Cu:[11,4],Zn:[12,4],Ga:[13,4],Ge:[14,4],As:[15,4],Se:[16,4],Br:[17,4],Kr:[18,4],Rb:[1,5],Sr:[2,5],Y:[3,5],Zr:[4,5],Nb:[5,5],Mo:[6,5],Tc:[7,5],Ru:[8,5],Rh:[9,5],Pd:[10,5],Ag:[11,5],Cd:[12,5],In:[13,5],Sn:[14,5],Sb:[15,5],Te:[16,5],I:[17,5],Xe:[18,5],Cs:[1,6],Ba:[2,6],Hf:[4,6],Ta:[5,6],W:[6,6],Re:[7,6],Os:[8,6],Ir:[9,6],Pt:[10,6],Au:[11,6],Hg:[12,6],Tl:[13,6],Pb:[14,6],Bi:[15,6],Po:[16,6],At:[17,6],Rn:[18,6],Fr:[1,7],Ra:[2,7],Rf:[4,7],Db:[5,7],Sg:[6,7],Bh:[7,7],Hs:[8,7],Mt:[9,7],Ds:[10,7],Rg:[11,7],Cn:[12,7],Nh:[13,7],Fl:[14,7],Mc:[15,7],Lv:[16,7],Ts:[17,7],Og:[18,7],La:[3,8],Ce:[4,8],Pr:[5,8],Nd:[6,8],Pm:[7,8],Sm:[8,8],Eu:[9,8],Gd:[10,8],Tb:[11,8],Dy:[12,8],Ho:[13,8],Er:[14,8],Tm:[15,8],Yb:[16,8],Lu:[17,8],Ac:[3,9],Th:[4,9],Pa:[5,9],U:[6,9],Np:[7,9],Pu:[8,9],Am:[9,9],Cm:[10,9],Bk:[11,9],Cf:[12,9],Es:[13,9],Fm:[14,9],Md:[15,9],No:[16,9],Lr:[17,9]};
+const table=document.getElementById('table');elements.forEach((el,i)=>{const p=pos[el[0]];if(!p)return;const c=document.createElement('div');c.className='element';c.style.gridColumn=p[0];c.style.gridRow=p[1];c.style.animationDelay=(i*.012)+'s';c.innerHTML='<span class="atomic">'+el[2]+'</span><div class="symbol">'+el[0]+'</div><div class="name">'+el[1]+'</div>';c.onclick=()=>showInfo(el);table.appendChild(c)});
+function showInfo(e){infoSymbol.textContent=e[0];infoName.textContent=e[1];infoNumber.textContent=e[2];infoMass.textContent=e[3];infoCategory.textContent=e[4];infoUse.textContent=e[5];infoPanel.classList.add('active')}function closeInfo(){infoPanel.classList.remove('active')}
+window.addEventListener('load',()=>{setTimeout(()=>{intro.classList.add('hide');main.classList.add('show');setTimeout(()=>intro.style.display='none',900)},4000)});
+document.addEventListener('mousemove',e=>{document.querySelectorAll('.element').forEach(card=>{const r=card.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,d=Math.hypot(e.clientX-x,e.clientY-y);if(d<150){let q=1-d/150;card.style.transform=`translateZ(${40*q}px) translateY(${-8*q}px) rotateX(${(e.clientY-y)*-.035}deg) rotateY(${(e.clientX-x)*.035}deg) scale(${1+.08*q})`}else card.style.transform=''})});
+document.addEventListener('click',e=>{if(infoPanel.classList.contains('active')&&!infoPanel.contains(e.target)&&!e.target.classList.contains('element'))closeInfo()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeInfo()});
+</script></body></html>
